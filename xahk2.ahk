@@ -293,18 +293,10 @@ MobGrind:
 		; Example = 100ms * 12 = 1.2 seconds
 		;This method allows AHK to better exit this mode and respond quicker to Stop command
 		if (Delay >= 12)
-		{
-			; If delay counter reached, reset counter and send a LEFT click
-			Delay := 0
-			sleep 50
-			ControlClick, , ahk_id %id%, ,Left, ,NAD
-			Sleep 50
-			ControlClick, , ahk_id %id%, ,Left, ,NAU	
-		}
-		else
-			Delay++ ;Increase delay counter by 1
-		
-	}
+	
+
+	
+
 	Sleep 100
 	;Force mouse keys UP at exit
 	ControlClick, , ahk_id %id%, ,Right, , NAU
