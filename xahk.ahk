@@ -689,74 +689,29 @@ JumpFly:
 
 
 ; Called when Ctrl+Alt+C is pressed. Hold both RIGHT and LEFT click down.
-
-
 Concrete:
-
-
 {
-
-
 	if (ProgState != 3)
-
-
 		Return
-
-
-		
-
-
 	BreakLoop := 0
-
-
-	
-
-
 	ControlClick, , ahk_id %id%, ,Right, , NAD
-
-
 	Sleep 500
-
-
 	ControlClick, , ahk_id %id%, ,Left, , NAD
-
-
 	sleep 100
-
-
 	While (BreakLoop = 0)
-
-
 	{
-
-
+		ControlClick, , ahk_id %id%, ,Right, , NAD
+	
+		ControlClick, , ahk_id %id%, ,Left, , NAD
 		if BreakLoop = 1)
-
-
 		{
-
-
 			sleep 10
-
-
 		}
-
-
 	}
-
-
 	ControlClick, , ahk_id %id%, ,Left, , NAU
-
-
 	Sleep 100
-
-
 	ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 	Return
-
-
 }
 
 
@@ -764,72 +719,24 @@ Concrete:
 
 
 ; Called when Ctrl+Alt+F is pressed and continuly clicks RIGHT mouse key
-
-
 Fishing:
-
-
 {
-
-
 	if (ProgState != 2)
-
-
 		Return
-
-
-
-
-
-
-
 	BreakLoop := 0
-
-
 		Loop
-
-
 		{
-
-
 			if (BreakLoop = 1)
-
-
 			{
-
-
 				BreakLoop := 0
-
-
 				break
-
-
 			}
-
-
-
-
-
-
-
 			Sleep 100
-
-
 				ControlClick, , ahk_id %id%, ,Right, , NAD
-
-
 			Sleep 500
-
-
 				ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 		}
-
-
 	Return
-
-
 }
 
 
