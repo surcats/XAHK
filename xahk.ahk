@@ -1,100 +1,32 @@
 
 ;==================================================================================================
-
-
-
-
 ; AHK setting
-
-
 #NoEnv
-
-
 SetBatchLines -1
-
-
 SetTitleMatchMode 2
-
-
 #SingleInstance Force
-
-
 SetWorkingDir %A_ScriptDir%
-
-
 ;==================================================================================================
-
-
 ; Globle values
-
-
 wintitle := Minecraft X-AHK V0.4
-
-
 targettitle := none
-
-
 targetwinclass := GLFW30 ;This is the Class of a Java program used to check we have a Minecraft prog
-
-
 ModeText := Empty
-
-
 id := 0
-
-
-
-
-
-
-
 ProgState := 0
-
-
 ;===================================================================================================
-
-
 ;List of ProgState's
-
-
 ;
-
-
 ; 0: Start			- Program called for first time and setting default state. Hotkeys set, menu
-
-
 ;						configured and default welcome GUI
-
-
 ; 1: Selected		- User has selected the target window to send key/mouse activity too
-
-
 ;						will use option Menu to slect mode. Note that JumpFlying is only
-
-
 ;						avalible while in this state!
-
-
 ; 2: FishingMode	- Enter Fishing Mode
-
-
 ; 3: ConcreteMode	- Enter Concrete Mode
-
-
 ; 4: MobGrindMode	- Enter Mob Grinder Mode
-
-
-
-
-
-
-
 ;===================================================================================================
-
-
 ;Shortcuts
-
-
 ;===================================================================================================
 
 
@@ -113,7 +45,7 @@ Hotkey  !^c,	Concrete		; Pressing ctrl + alt + c will start concrete farming
 Hotkey  !^m,	MobGrind		; Pressing ctrl + alt + m will start mob grinding
 
 
-Hotkey  !^m,	Ice		; Pressing ctrl + alt + i will start mob grinding
+Hotkey  !^i,	Ice		; Pressing ctrl + alt + i will start mob grinding
 
 
 Hotkey	!^s,	Stop			; Pressing ctrl + alt + s will stop it
@@ -1043,134 +975,44 @@ MobGrind:
 
 
 ; Called when Ctrl+Alt+I is pressed
-
-
 Ice:
-
-
 {
-
-
 	if (ProgState != 4)
-
-
-		Return
-
-
-		
-
-
+		Return		
 	BreakLoop := 0
-
-
 	Delay := 0
-
-
-	Sleep 10
-
-
+	Sleep 1
 	While (BreakLoop = 0)
-
-
 	{
-
-
 		;on each loop send RIGHT key down as it can be lost when switching focus
-
-
 		ControlClick, , ahk_id %id%, ,Right, , NAD
-
-
-		
-
-
 		if (BreakLoop = 1)
-
-
 		{
-
-
 			; On Ctrl+Alt+S detected forces a RIGHT mouse key UP
-
-
 			ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 			Return
-
-
 		}
-
-
-		
-
-
-		Sleep 10 ;10 ms
-
-
+		Sleep 0.1 ;0.1 ms
 		;Delay between LEFT clicks is controled by sleep delay above * value tested here (ie 12)
-
-
 		; Example = 100ms * 12 = 1.2 seconds
-
-
 		;This method allows AHK to better exit this mode and respond quicker to Stop command
-
-
 		if (Delay >= 12)
-
-
 		{
-
-
 			; If delay counter reached, reset counter and send a LEFT click
-
-
 			Delay := 0
-
-
 			sleep 5
-
-
 			ControlClick, , ahk_id %id%, ,Left, ,NAD
-
-
 			Sleep 5
-
-
 			ControlClick, , ahk_id %id%, ,Left, ,NAU	
-
-
 		}
-
-
 		else
-
-
 			Delay++ ;Increase delay counter by 1
-
-
-		
-
-
 	}
-
-
 	Sleep 10
-
-
 	;Force mouse keys UP at exit
-
-
 	ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 	ControlClick, , ahk_id %id%, ,Left, ,NAU
-
-
 	Return
-
-
 }
 
 
