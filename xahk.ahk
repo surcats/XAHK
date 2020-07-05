@@ -837,134 +837,44 @@ Fishing:
 
 
 ; Called when Ctrl+Alt+M is pressed
-
-
 MobGrind:
-
-
 {
-
-
 	if (ProgState != 4)
-
-
 		Return
-
-
-		
-
-
 	BreakLoop := 0
-
-
 	Delay := 0
-
-
 	Sleep 500
-
-
 	While (BreakLoop = 0)
-
-
 	{
-
-
 		;on each loop send RIGHT key down as it can be lost when switching focus
-
-
 		ControlClick, , ahk_id %id%, ,Right, , NAD
-
-
-		
-
-
 		if (BreakLoop = 1)
-
-
 		{
-
-
 			; On Ctrl+Alt+S detected forces a RIGHT mouse key UP
-
-
 			ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 			Return
-
-
 		}
-
-
-		
-
-
 		Sleep 100 ;100 ms
-
-
 		;Delay between LEFT clicks is controled by sleep delay above * value tested here (ie 12)
-
-
 		; Example = 100ms * 12 = 1.2 seconds
-
-
 		;This method allows AHK to better exit this mode and respond quicker to Stop command
-
-
 		if (Delay >= 12)
-
-
 		{
-
-
 			; If delay counter reached, reset counter and send a LEFT click
-
-
 			Delay := 0
-
-
 			sleep 50
-
-
 			ControlClick, , ahk_id %id%, ,Left, ,NAD
-
-
 			Sleep 50
-
-
 			ControlClick, , ahk_id %id%, ,Left, ,NAU	
-
-
 		}
-
-
 		else
-
-
 			Delay++ ;Increase delay counter by 1
-
-
-		
-
-
 	}
-
-
 	Sleep 100
-
-
 	;Force mouse keys UP at exit
-
-
 	ControlClick, , ahk_id %id%, ,Right, , NAU
-
-
 	ControlClick, , ahk_id %id%, ,Left, ,NAU
-
-
 	Return
-
-
 }
 
 
@@ -991,11 +901,7 @@ Ice:
 			ControlClick, , ahk_id %id%, ,Right, , NAU
 			Return
 		}
-		;Delay between LEFT clicks is controled by sleep delay above * value tested here (ie 12)
-		; Example = 100ms * 12 = 1.2 seconds
-		;This method allows AHK to better exit this mode and respond quicker to Stop command
-	
-			; If delay counter reached, reset counter and send a LEFT click
+
 			
 			sleep 0.1
 			ControlClick, , ahk_id %id%, ,Left, ,NAD
@@ -1006,6 +912,7 @@ Ice:
 	Sleep 0.1
 	;Force mouse keys UP at exit
 	ControlClick, , ahk_id %id%, ,Left, ,NAU
+	ControlClick, , ahk_id %id%, ,Right, ,NAU
 	Return
 }
 
