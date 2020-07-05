@@ -992,11 +992,11 @@ Ice:
 			ControlClick, , ahk_id %id%, ,Right, , NAU
 			Return
 		}
-		Sleep 0.1 ;0.1 ms
+		Sleep 100 ;100 ms
 		;Delay between LEFT clicks is controled by sleep delay above * value tested here (ie 12)
 		; Example = 100ms * 12 = 1.2 seconds
 		;This method allows AHK to better exit this mode and respond quicker to Stop command
-		if (Delay >= 12)
+		if (Delay >= 1)
 		{
 			; If delay counter reached, reset counter and send a LEFT click
 			Delay := 0
